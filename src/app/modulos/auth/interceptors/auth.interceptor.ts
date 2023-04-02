@@ -7,7 +7,7 @@ import {Observable, map} from 'rxjs';
 @Injectable()
 export class AuthIntecerpetor implements HttpInterceptor {
     isRefreshingToken: boolean = false;
-    tokenSubject:BehaviorSubject<string> = new BehaviorSubject<string>(null);
+    tokenSubject:BehaviorSubject<string> = new BehaviorSubject<string>("");
 
 
     constructor(
@@ -19,9 +19,11 @@ export class AuthIntecerpetor implements HttpInterceptor {
 
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-       const token = this.tokenService.getToken();
+       console.log("entro por aqui")
+        const token = this.tokenService.getToken();
        if(token){
         request = request.clone({headers: request.headers.set('Authorization', 'Bearer ' + token)})
+        console.log("añadio el beare")
        }
     
         return next.handle(request)

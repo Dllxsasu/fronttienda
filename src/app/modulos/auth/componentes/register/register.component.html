@@ -1,1 +1,236 @@
-<p>register works!</p>
+<div class="limiter inner_pages">
+    <div class="container-login100">
+      <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
+        <form  [formGroup]="form" role="form" class="login100-form validate-form flex-sb flex-w">
+          <span style="width:100%;" class="titleClass">
+  
+            <img src="assets/img/shopizer-logo.png" width="200" style="margin-top:-15px;">
+  
+          </span>
+  
+          <div class="form-group row alert-error" *ngIf="errorMessage !== ''" style="width:100%;line-height: 2.5;color:#ff3d71;font-size: 12px;margin-bottom:10px;">
+            {{errorMessage}}
+          </div>
+  
+          <div class="form-group row alert-error" *ngIf="successMessage !== ''" style="width:100%;line-height: 2.5;color:green;font-size: 12px;margin-bottom:10px;">
+            {{successMessage}}
+          </div>
+  
+          <!-- <div> -->
+          <!-- <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 width50 leftSide"> -->
+          <div style="width:100%;">
+            <p class="txt3">Merchant administrator information</p>
+            <span class="txt1 p-b-11">
+              {{ 'First Name' | translate}}
+            </span>
+            <div class="validate-input m-b-12">
+              <input class="inputLogin" type="text" formControlName="firstName"  placeholder="First Name"
+                >
+                <div *ngIf="formControls.firstName.errors && formControls.firstName.touched" class="help-block" style="color:#ff3d71;font-size: 12px;">
+                    <span *ngIf="formControls.firstName.errors.required && formControls.firstName.touched">{{ 'USER_FORM.FIRST_NAME_ERROR_REQUIRED' |
+                      translate}}</span>
+                   
+                  </div>
+            </div>
+          </div>
+          <div style="width:100%;">
+            <span class="txt1 p-b-11">
+              {{ 'Last Name' | translate}}
+            </span>
+            <div class="validate-input m-b-12">
+              <input class="inputLogin" type="text" formControlName="lastName"  placeholder="Last Name"
+                >
+                <div *ngIf="formControls.lastName.errors && formControls.lastName.touched" class="help-block" style="color:#ff3d71;font-size: 12px;">
+                    <span *ngIf="formControls.lastName.errors.required && formControls.lastName.touched">{{ 'USER_FORM.LAST_NAME_ERROR_REQUIRED' |
+                      translate}}</span>
+                   
+                  </div>
+            </div>
+          </div>
+          <div style="width:100%;">
+            <span class="txt1 p-b-11">
+              {{ 'Email Address' | translate}}
+            </span>
+            <div class="validate-input m-b-12">
+              <input class="inputLogin" type="email" formControlName="email" placeholder="Email Address">
+            </div>
+            <div *ngIf="formControls.email.errors && formControls.email.touched" class="help-block" style="color:#ff3d71;font-size: 12px;">
+              <span *ngIf="formControls.email.errors.required">{{ 'USER_FORM.EMAIL_ADDRESS_ERROR_REQUIRED' |
+                translate}}</span>
+              <span *ngIf="formControls.email.errors.email">{{ 'USER_FORM.EMAIL_ADDRESS_ERROR_NOT_VALID' |
+                translate}}</span>
+            </div>
+          </div>
+          <div style="width:100%;">
+            <span class="txt1 p-b-11">
+              {{ 'LOGIN.PASSWORD' | translate}}
+            </span>
+            <div class="validate-input m-b-12">
+              <span class="btn-show-pass">
+                <i [ngClass]="passwordType()==0 ? 'fa fa-eye' : 'fa fa-eye-slash'" (click)="showPassword()"></i>
+              </span>
+              <input [ngClass]="passwordType()==0 ? 'inputLogin password_type' : 'inputLogin'" type="text" name="password"
+                autocomplete="off" formControlName="password"  name="password" placeholder="Password" pattern="^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=[^0-9]*[0-9]).{6,12}$"
+                 required>
+            </div>
+            <div *ngIf="formControls.password.errors && formControls.password.touched"  class="help-block" style="color:#ff3d71;font-size: 12px;">
+              <span *ngIf=" formControls.password.errors.required ">{{ 'USER_CHANGE_PASSWORD.PASSWORD_ERROR_REQUIRED' |
+                translate}}</span>
+              <span *ngIf=" formControls.password.errors.passwordstrong ">{{ 'USER_CHANGE_PASSWORD.PASSWORD_ERROR_RULES' |
+                translate}}</span>
+            </div>
+          </div>
+          <div style="width:100%;">
+            <span class="txt1 p-b-11">
+              {{ 'Repeat Password' | translate}}
+            </span>
+            <div class="validate-input m-b-12">
+              <span class="btn-show-pass">
+                <i [class]="passwordType()==0 ? 'fa fa-eye' : 'fa fa-eye-slash'" (click)="showPassword()"></i>
+              </span>
+              <input [class]="passwordType()==0 ? 'inputLogin password_type' : 'inputLogin'" type="text" name="password"
+              formControlName="repeatPassword"  autocomplete="off" placeholder="Password"  name="repeatPassword"
+                  validateEqual="password" required>
+            </div>
+            <div class="help-block" > 
+                    {{ formControls.repeatPassword.errors |json }}
+            </div>
+            <div *ngIf="formControls.repeatPassword.errors && formControls.repeatPassword.touched" class="help-block" style="color:#ff3d71;font-size:
+                  12px;">
+                  <span *ngIf=" formControls.repeatPassword.errors.required ">{{ 'USER_CHANGE_PASSWORD.PASSWORD_ERROR_REQUIRED' |
+                    translate}}</span>
+                  <span *ngIf=" formControls.repeatPassword.errors.passwordMatch ">{{ 'USER_CHANGE_PASSWORD.PASSWORDS_NOT_MATCH' |
+                    translate}}</span>
+              
+            </div>
+          </div>
+  
+          <!-- </div> -->
+          <!-- <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 width50"> -->
+          <div style="width:100%;">
+            <p class="txt3">Store information</p>
+            <span class="txt1 p-b-11">
+              {{ 'Store name'}}
+            </span>
+            <div class="validate-input m-b-12">
+              <input type="text" class="inputLogin" formControlName="name" name="name" placeholder="{{ 'Store name' | translate }}"
+                required>
+                
+                <div *ngIf="formControls.name.errors && formControls.name.touched" class="help-block" style="color:#ff3d71;font-size:
+                12px;">
+                <span *ngIf=" formControls.name.errors.required"> {{formControls.name.errors | json }} {{ 'STORE_FORM.STORE_NAME_REQUIRED' |
+                  translate}}</span>
+              
+                </div>
+            </div>
+          </div>
+          <div style="width:100%;">
+            <span class="txt1 p-b-11">
+              {{ 'Unique Store Code' }}
+            </span>
+            <div class="validate-input m-b-12">
+              <input type="text" class="inputLogin" formControlName="code"  name="code" (focusout)="checkCode($event)"
+                placeholder="{{ 'Unique Store Code' | translate }}"  >
+  
+  
+  
+              <div *ngIf="formControls.code.errors && formControls.code.touched" style="color:#ff3d71;font-size: 12px;">
+                <span *ngIf="formControls.code.errors.required">
+                  {{ 'COMMON.CODE_REQUIRED' | translate}}
+                </span>
+                <span *ngIf="formControls.code.errors.pattern">
+                  {{ 'COMMON.ALPHA_DECIMAL_RULE' | translate}}
+                </span>
+              </div>
+              <span *ngIf="isCodeUnique" style="color:#ff3d71;font-size: 12px;">
+                {{ 'COMMON.CODE_EXISTS' | translate}}
+              </span>
+            </div>
+          </div>
+          <div style="width:100%;">
+            <span class="txt1 p-b-11">
+              {{ 'STORE_FORM.ADDRESS' | translate }}
+            </span>
+            <div class="validate-input m-b-12">
+              <input type="text" class="inputLogin" formControlName="address"  name="address" placeholder="{{ 'STORE_FORM.ADDRESS' | translate }}"
+                >
+                <div *ngIf="formControls.address.errors && formControls.address.touched" style="color:#ff3d71;font-size: 12px;">
+                    <span *ngIf="formControls.address.errors.required">
+                      {{ 'STORE_FORM.ADDRESS_REQUIRED' | translate}}
+                    </span>
+                </div>
+            </div>
+          </div>
+          <div style="width:100%;">
+            <span class="txt1 p-b-11">
+              {{ 'STORE_FORM.CITY' | translate }}
+            </span>
+            <div class="validate-input m-b-12">
+              <input type="text" class="inputLogin"  formControlName="city" name="city" placeholder="{{ 'STORE_FORM.CITY' | translate }}"
+                >
+            </div>
+            <div *ngIf="formControls.city.errors && formControls.city.touched" style="color:#ff3d71;font-size: 12px;">
+                <span *ngIf="formControls.city.errors.required">
+                  {{ 'STORE_FORM.CITY_CODE_REQUIRED' | translate}}
+                </span>
+            </div>
+          </div>
+          <div style="width:100%;">
+            <span class="txt1 p-b-11">
+              {{ 'STORE_FORM.POSTAL_CODE' |
+              translate }}
+            </span>
+            <div class="validate-input m-b-12">
+              <input type="text" class="inputLogin" formControlName="postalCode"  name="postalCode" placeholder="{{ 'STORE_FORM.POSTAL_CODE' | translate }}"
+                >
+
+            </div>
+            <div *ngIf="formControls.postalCode.errors && formControls.postalCode.touched" style="color:#ff3d71;font-size: 12px;">
+                <span *ngIf="formControls.postalCode.errors.required">
+                  {{ 'STORE_FORM.POSTAL_CODE_REQUIRED' | translate}}
+                </span>
+            </div>
+          </div>
+  
+          <div style="width:100%;">
+            <span class="txt1 p-b-11">
+              {{ 'STORE_FORM.COUNTRY' | translate }}
+            </span>
+            <div class="validate-input m-b-12">
+              <nb-select class="select_fields"  formControlName="country"  name="country" (selectedChange)="countryIsSelected($event)"
+                placeholder="{{ 'STORE_FORM.COUNTRY' | translate }}" required>
+                <nb-option *ngFor="let country of countries" [value]="country.code">{{ country.name }}</nb-option>
+              </nb-select>
+            </div>
+          </div>
+          <div style="width:100%;">
+            <span class="txt1 p-b-11">
+              {{ 'STORE_FORM.STATE_PROVINCE' | translate }}
+            </span>
+            <div class="validate-input m-b-12">
+              <nb-select class="select_fields" formControlName="state" name="state" required placeholder="{{ 'STORE_FORM.STATE_PROVINCE' | translate }}">
+                <nb-option *ngFor="let province of provinces" [value]="province.code">{{ province.name }}</nb-option>
+              </nb-select>
+            </div>
+          </div>
+  
+          <!-- </div> -->
+          <!-- </div> -->
+  
+  
+          <div class="container-login100-form-btn">
+            <button type="button" nbButton  class="login100-form-btn" (click)="onRegister()">
+              {{ 'Register' | translate}}
+            </button>
+          </div>
+          <section aria-label="Register" class="another-action">
+            <p class="txt4"> Already have an account? <a class="txt5" href="javascript:void(0);" (click)="onClickLogin()">Login</a></p>
+          </section>
+  
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div id="dropDownSelect1"></div>

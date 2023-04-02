@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { NbCheckboxModule, NbLayoutModule, NbSpinnerModule, NbTreeGridComponent, NbTreeGridModule } from '@nebular/theme';
+import { NbCheckboxModule, NbLayoutModule, NbSelectModule, NbSpinnerModule, NbTreeGridComponent, NbTreeGridModule } from '@nebular/theme';
 
 @NgModule({
   declarations: [
@@ -11,14 +11,16 @@ import { NbCheckboxModule, NbLayoutModule, NbSpinnerModule, NbTreeGridComponent,
     NbSpinnerModule,
     NbCheckboxModule,
     NbTreeGridModule,
-    NbLayoutModule
+    NbLayoutModule,
+    NbSelectModule
   ],
   exports:[
     NbSpinnerModule,
     NbCheckboxModule,
     NbTreeGridComponent, 
     NbTreeGridModule,
-    NbLayoutModule
+    NbLayoutModule,
+    NbSelectModule
   ]
 })
 export class NebulaModule { }

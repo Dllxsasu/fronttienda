@@ -18,6 +18,10 @@ export class AppComponent {
     if (!localStorage.getItem('lang')) {
       localStorage.setItem('lang', environment.client.language.default);
     }
+
+    console.log(environment.client.language.array)
+    console.log(environment.client.language.default)
+    console.log(localStorage.getItem('lang'));
     translate.addLangs([...environment.client.language.array]);
     translate.setDefaultLang(localStorage.getItem('lang')+"");
     translate.use(localStorage.getItem('lang')+"");

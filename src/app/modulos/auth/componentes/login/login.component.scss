@@ -1,11 +1,7 @@
-@Use "../../../../@theme/styles/themes.scss";
-
-.another-action {
-    margin-top: 2rem;
-
+* {
+    margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    width: 100%
 }
 
 body,
@@ -73,6 +69,27 @@ input:focus {
     border-color: transparent !important;
 }
 
+/**
+input:focus::-webkit-input-placeholder { color:transparent; }
+input:focus:-moz-placeholder { color:transparent; }
+input:focus::-moz-placeholder { color:transparent; }
+input:focus:-ms-input-placeholder { color:transparent; }
+
+textarea:focus::-webkit-input-placeholder { color:transparent; }
+textarea:focus:-moz-placeholder { color:transparent; }
+textarea:focus::-moz-placeholder { color:transparent; }
+textarea:focus:-ms-input-placeholder { color:transparent; }
+
+input::-webkit-input-placeholder { color: #999999;}
+input:-moz-placeholder { color: #999999;}
+input::-moz-placeholder { color: #999999;}
+input:-ms-input-placeholder { color: #999999;}
+
+textarea::-webkit-input-placeholder { color: #999999;}
+textarea:-moz-placeholder { color: #999999;}
+textarea::-moz-placeholder { color: #999999;}
+textarea:-ms-input-placeholder { color: #999999;}
+**/
 
 label {
     display: block;
@@ -112,13 +129,6 @@ iframe {
 
 .txt3 {
     font-size: 13px;
-    color: #555555;
-    line-height: 1.4;
-}
-
-.txt4 {
-    font-size: 14px;
-    text-align: center;
     color: #555555;
     line-height: 1.4;
 }
@@ -261,11 +271,6 @@ iframe {
     &:hover {
         background-color: #edf1f7;
         border-color: #e4e9f2;
-    }
-
-    &.password_type {
-        -webkit-text-security: disc;
-        -moz-text-security: disc;
     }
 }
 
@@ -438,9 +443,11 @@ input:focus {
     text-transform: uppercase !important;
     font-weight: 600 !important;
     font-size: 0.875rem !important;
+    padding: 0.6875rem 1.125rem;
 
     &:disabled {
         background-color: #598bff96 !important;
+        border-color: #598bff96 !important;
 
         &:hover {
             background-color: #598bff96 !important;
@@ -541,8 +548,8 @@ input:focus {
 
 .has-error input[type="email"],
 .has-error input[type="password"] {
-    border-color: rgb(216, 12, 12);
-    color: rgb(230, 14, 14);
+    border-color: rgb(255, 1, 1);
+    color: rgb(255, 0, 0);
 }
 
 .alert-validate:hover:before {

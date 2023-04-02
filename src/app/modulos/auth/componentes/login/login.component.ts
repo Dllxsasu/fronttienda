@@ -76,6 +76,7 @@ get formControls(){
       this.loading = true;
       this.isSubmitted = true;
       if(this.form.invalid){
+        this.loading = false;
         return;
       }
       
@@ -100,12 +101,13 @@ get formControls(){
                   }else{
                     localStorage.setItem('loginEmail', '');
                   }
-
-                  this.router.navigate(['pages']);
+alert("pages")
+                 // this.router.navigate(['pages']);
                   this.loading = false;
 
               },
               err =>{
+                console.log("entro aqui")
                 if(err.status === 0){
                   this.errorMessage = this.translate.instant('COMMON.INTERNAL_SERVER_ERROR');
                 }else {

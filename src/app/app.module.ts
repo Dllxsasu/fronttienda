@@ -8,8 +8,10 @@ import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { AuthIntecerpetor } from './modulos/auth/interceptors/auth.interceptor';
+import { GlobalerrorInterceptor } from './shared/interceptor/globalerror.interceptor';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,18 @@ import { ToastrModule } from 'ngx-toastr';
       },
     }),
   ],
-  providers: [TranslateService],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthIntecerpetor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: GlobalerrorInterceptor,
+      multi: true,
+    },
+    TranslateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

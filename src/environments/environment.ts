@@ -25,7 +25,8 @@ export const environment = {
             default: 'en',
             array: [
                 'fr',
-                'en'
+                'en',
+                'es'
             ],
         },
     }
